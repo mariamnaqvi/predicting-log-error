@@ -60,17 +60,7 @@ def summarize(df):
     print('Dataframe Description')
     print(df.describe())
     print('----------------------')
-    num_cols = [col for col in df.columns if df[col].dtype != 'object']
-    cat_cols = [col for col in df.columns if col not in num_cols]
-    print('----------------------')
-    print('Dataframe value counts ')
-    for col in df.columns:
-        if col in cat_cols:
-            print(df[col].value_counts())
-        else:
-            # define bins for continuous columns and don't sort them
-            print(df[col].value_counts(bins=10, sort=False))
-    print('----------------------')
+    
     
 
 
