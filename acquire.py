@@ -44,22 +44,45 @@ def summarize(df):
     '''
     This function will take in a single argument (a pandas dataframe) and 
     output to console various statistices on said dataframe, including:
-    # .head()
+    # .shape
     # .info()
     # .describe()
     # value_counts()
     # observation of nulls in the dataframe
     '''
-    print('----------------------')
-    print('Dataframe head')
-    print(df.head(3))
-    print('----------------------')
-    print('Dataframe Info ')
-    print(df.info())
-    print('----------------------')
-    print('Dataframe Description')
+    # Print out the "shape" of our dataframe - the rows and columns we have to work with
+    print(f'The zillow dataframe has {df.shape[0]} rows and {df.shape[1]} columns.')
+    print('')
+    print('-------------------')
+    
+    # print the number of missing values in our dataframe
+    print(f'There are total of {df.isna().sum().sum()} missing values in the entire dataframe.')
+    print('')
+    print('-------------------')
+
+    # print information regarding column datatypes and non null counts
+    df.info()
+    print('')
+    print('-------------------')
+
+    # print out summary stats for our dataset
+    print('Here are the summary statistics of our dataset')
     print(df.describe())
-    print('----------------------')
+    print('')
+    print('-------------------')
+    print('Here are the categories and their relative proportions')
+    # check different categories and proportions of each category for object type cols
+    show_vc = ['fips','bathroomcnt','bedroomcnt', 'propertylandusedesc', 'buildingqualitytypeid']
+    for col in df.columns:
+        if col in show_vc:
+            print(f'value counts of {col}')
+            print(df[col].value_counts())
+            print('')
+            print(f'proportions of {col}')
+            print(df[col].value_counts(normalize=True,dropna=False))
+            print('-------------------')
+    
+    
     
     
 
