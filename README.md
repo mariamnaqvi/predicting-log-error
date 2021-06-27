@@ -25,48 +25,41 @@ Create scripts to perform the following:
                                 *logerror = log(Zestimate) - log(SalePrice)*
 
 ## Initial Hypotheses
-*Hypotheses X:* 
+*Hypotheses 1:* 
 * Confidence level = 0.95
 * Alpha = 1 - Confidence level = 0.05
-* H<sub>0</sub>: Variance in logerror in Los Angeles county and other counties are equivalent
-* H<sub>1</sub>: Variance in logerror in Los Angeles county and other counties are not equivalent
+* H<sub>0</sub>: Mean logerror for homes with 2294 sqft or less is equivalent to those with more than 2294 sq ft
+* H<sub>1</sub>: Mean logerror for homes with 2294 sqft or less is greater than those with more than 2294 sq ft
 
-*Hypotheses X:* 
-* Confidence level = 
-* Alpha = 1 - Confidence level = 
+*Hypotheses 2:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
 * H<sub>0</sub>: Mean logerror in Los Angeles County is equivalent to Mean Error of other counties
 * H<sub>1</sub>: Mean logerror in Los Angeles County is not equivalent to Mean Error of other counties
 
-*Hypotheses X:* 
+*Hypotheses 3:* 
 * Confidence level = 0.95
-* Alpha = 1 - Confidence level = 0.05 
-* H<sub>0</sub>: Variance in logerror in Orange county and Ventura county are equivalent
-* H<sub>1</sub>: Variance in logerror in Orange county and Ventura county are not equivalent
-
-*Hypotheses X:* 
-* Confidence level = 
-* Alpha = 1 - Confidence level = 
+* Alpha = 1 - Confidence level = 0.05
 * H<sub>0</sub>: Mean logerror in Orange County is equivalent to Mean Error of Ventura county
 * H<sub>1</sub>: Mean logerror in Orange County is not equivalent to Mean Error of Ventura county
 
-*Hypotheses X:* 
+*Hypotheses 4:* 
 * Confidence level = 0.95
-* Alpha = 1 - Confidence level = 0.05 
-* H<sub>0</sub>: Variance in logerror in properties with more than 6 bathrooms and others are equivalent
-* H<sub>1</sub>: Variance in logerror in properties with more than 6 bathrooms and others are not equivalent
-
-*Hypotheses X:* 
-* Confidence level = 
-* Alpha = 1 - Confidence level = 
+* Alpha = 1 - Confidence level = 0.05
 * H<sub>0</sub>: Mean logerror for properties with more than 6 bathrooms is equivalent to those with 6 or less bathrooms
 * H<sub>1</sub>: Mean logerror for properties with more than 6 bathrooms is not equal to those with 6 or less bathrooms
 
+*Hypotheses 5:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror for properties with more than 5 bedrooms is equivalent to those with 5 or less bathrooms
+* H<sub>1</sub>: Mean logerror for properties with more than 5 bedrooms is not equal to those with 5 or less bathrooms
 
 Data Dictionary
 
 The data was initially comprised of the following columns:
-Name | Datatype | Definition | Possible Values 
---- | --- | --- | --- 
+Name | Datatype | Definition
+--- | --- | --- 
  typeconstructiontypeid | non-null | float64
  storytypeid | non-null | float64
  propertylandusetypeid | non-null | float64
@@ -171,7 +164,6 @@ Deliver
   8. typeconstructiontype
   * as was the case in the previous Zillow project, we are focusing on single-unit properties. By definition, this includes any property that matches the following description: "a housing unit within a larger structure that can be used by an individual or household to eat, sleep, and live. The unit can be in any type of residence, such as a house, apartment, or mobile home, and may also be a single unit in a group of rooms"
   * to improve performance, caching was used - the data collected by the aforementioned query was stored in a CSV file on my machine. This allows us to avoid repeated calls to the database by instead using the local copy on subsequent data acquisition calls
-  * Additionally, latitude and longitude were removed via the sql query; these values contained a number of nulls which did not provide added value for this analysis
   * Finally, this file contains functions to perform summarization and data regarding the number of nulls by column and row 
 
 ### 3. Prepare
@@ -189,14 +181,28 @@ Deliver
     * heatingorsystemdesc
   * encode the age of home as currentYear - age_of_home, to give it a relative value
   * encode the fips column to produce three regions: LA_county, orange_county and ventura_county
-  * 
 
 ### 4. Explore
  * Perform bivariate analysis, by generating bar plots for categorical variables, as well as scatter plots for quantitative variables
  * Performs multivariate analysis by generating scatter plots of each continuous variable against the target variable, by each categorical variable
+ * Use tools such as a heatmap to discover correlation between variables and the target variable
+ * Use pairplots to analyze interactions between variables; these will help find distinct clusters where relationships are not driven solely by linear correlation
+ * Use the above information to generate three different clusters:
+   1. Cluster1: bathroomcnt, bedroomcnt, calculatedfinishedsquarefeet, age_of_home, buildingqualitytypeid
+   2. Cluster2: structuretaxvaluedollarcnt, taxvaluedollarcnt, landtaxvaluedollarcnt, taxamount 
+   3. Cluster3: latitude, longitude 
+ * split the data into train/test/validate splits 
 
 ### 5. Model
-
+ * Use a scalar to ensure that the data is scaled 
+ * Use KMeans to predict log error values in conjunction with the clusters mentioned above
+ * Plot the data and validate using statistical analysis: levenes tests, T-Tests and RMSE/R-squared calculations
+   * make use of the following regression algorithms to generate models:
+    1. OLS Regression
+    2. Lasso + Lars
+    3. Tweedie Regressor GLM
+    4. Polynomial Regression
+ * evaluate the results and compare the output of each model to test for accuracy against the different data splits
 
 ### 6. Deliver
 Present findings via Jupyte Nrotebook
@@ -220,7 +226,8 @@ Next, open the Jupyter notebook titled “<<FINAL REPORT NAME>>” and execute t
 ## Takeaways
 During the analysis process, I made use of the following regression models:
 
-Additionally, I made use of clustering to generate a number of new features.
+Additionally, I made use of clustering and Unsupervised Machine Learning to generate a number of new features.
 
+ The square footage, tax values, county and some of our clusters were found to be the best drivers of log error. 'calculatedfinishedsquarefeet', 'structuretaxvaluedollarcnt', 'taxvaluedollarcnt', 'LA_county', 'is_cluster4_3' 'cluster4_1', 'cluster4_2'
  
 ## Next Steps
