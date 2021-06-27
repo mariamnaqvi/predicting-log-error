@@ -46,7 +46,6 @@ def summarize(df):
     output to console various statistices on said dataframe, including:
     # .shape
     # .info()
-    # .describe()
     # value_counts()
     # observation of nulls in the dataframe
     '''
@@ -54,7 +53,7 @@ def summarize(df):
     print(f'The zillow dataframe has {df.shape[0]} rows and {df.shape[1]} columns.')
     print('')
     print('-------------------')
-    
+
     # print the number of missing values in our dataframe
     print(f'There are total of {df.isna().sum().sum()} missing values in the entire dataframe.')
     print('')
@@ -65,11 +64,6 @@ def summarize(df):
     print('')
     print('-------------------')
 
-    # print out summary stats for our dataset
-    print('Here are the summary statistics of our dataset')
-    print(df.describe())
-    print('')
-    print('-------------------')
     print('Here are the categories and their relative proportions')
     # check different categories and proportions of each category for object type cols
     show_vc = ['fips','bathroomcnt','bedroomcnt', 'propertylandusedesc', 'buildingqualitytypeid']
