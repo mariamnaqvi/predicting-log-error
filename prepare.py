@@ -15,7 +15,7 @@ from sklearn.impute import SimpleImputer
 from collections import Counter
 
 # for scaling data
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, RobustScaler
 
 def handle_missing_values(df, prop_required_column=0.5 , prop_required_row=0.75):
     '''
@@ -169,7 +169,7 @@ def scale_data(X_train, X_validate, X_test):
     
 def remove_outliers(df, cols, k):
     '''
-    This function checks for outliers in original dataframe and removes all outliers not within IQR 
+    This function checks for outliers in original dataframe and removes all outliers not within IQR. 
     '''
     for col in cols:
         q1, q3 = df[col].quantile([.25, .75])
