@@ -25,19 +25,111 @@ Create scripts to perform the following:
                                 *logerror = log(Zestimate) - log(SalePrice)*
 
 ## Initial Hypotheses
-*Hypotheses X:* 
-* Confidence level = 
-* Alpha = 1 - Confidence level = 
-* H<sub>0</sub>: 
-* H<sub>1</sub>: 
+*Hypotheses 1:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror for homes with 2294 sqft or less is equivalent to those with more than 2294 sq ft
+* H<sub>1</sub>: Mean logerror for homes with 2294 sqft or less is greater than those with more than 2294 sq ft
+
+*Hypotheses 2:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror in Los Angeles County is equivalent to Mean Error of other counties
+* H<sub>1</sub>: Mean logerror in Los Angeles County is not equivalent to Mean Error of other counties
+
+*Hypotheses 3:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror in Orange County is equivalent to Mean Error of Ventura county
+* H<sub>1</sub>: Mean logerror in Orange County is not equivalent to Mean Error of Ventura county
+
+*Hypotheses 4:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror for properties with more than 6 bathrooms is equivalent to those with 6 or less bathrooms
+* H<sub>1</sub>: Mean logerror for properties with more than 6 bathrooms is not equal to those with 6 or less bathrooms
+
+*Hypotheses 5:* 
+* Confidence level = 0.95
+* Alpha = 1 - Confidence level = 0.05
+* H<sub>0</sub>: Mean logerror for properties with more than 5 bedrooms is equivalent to those with 5 or less bathrooms
+* H<sub>1</sub>: Mean logerror for properties with more than 5 bedrooms is not equal to those with 5 or less bathrooms
 
 Data Dictionary
 
 The data was initially comprised of the following columns:
-Name | Datatype | Definition | Possible Values 
---- | --- | --- | --- 
-parcelid|non-null  int64|Unique identifier for each property|Numeric value
-
+Name | Datatype | Definition
+--- | --- | --- 
+ typeconstructiontypeid | non-null | float64
+ storytypeid | non-null | float64
+ propertylandusetypeid | non-null | float64
+ heatingorsystemtypeid | non-null | float64
+ buildingclasstypeid | non-null | object 
+ architecturalstyletypeid | non-null | float64
+ airconditioningtypeid | non-null | float64
+ parcelid | non-null | int64  
+ id | non-null | int64  
+ logerror | non-null | float64
+ transactiondate | non-null | object 
+ id | non-null | int64  
+ basementsqft | non-null | float64
+ bathroomcnt | non-null | float64
+ bedroomcnt | non-null | float64
+ buildingqualitytypeid | non-null | float64
+ calculatedbathnbr | non-null | float64
+ decktypeid | non-null | float64
+ finishedfloor1squarefeet | non-null | float64
+ calculatedfinishedsquarefeet | non-null | float64
+ finishedsquarefeet12 | non-null | float64
+ finishedsquarefeet13 | non-null | float64
+ finishedsquarefeet15 | non-null | float64
+ finishedsquarefeet50 | non-null | float64
+ finishedsquarefeet6 | non-null | float64
+ fips | non-null | float64
+ fireplacecnt | non-null | float64
+ fullbathcnt | non-null | float64
+ garagecarcnt | non-null | float64
+ garagetotalsqft | non-null | float64
+ hashottuborspa | non-null | float64
+ latitude | non-null | float64
+ longitude | non-null | float64
+ lotsizesquarefeet | non-null | float64
+ poolcnt | non-null | float64
+ poolsizesum | non-null | float64
+ pooltypeid10 | non-null | float64
+ pooltypeid2 | non-null | float64
+ pooltypeid7 | non-null | float64
+ propertycountylandusecode | non-null | object 
+ propertyzoningdesc | non-null | object 
+ rawcensustractandblock | non-null | float64
+ regionidcity | non-null | float64
+ regionidcounty | non-null | float64
+ regionidneighborhood | non-null | float64
+ regionidzip | non-null | float64
+ roomcnt | non-null | float64
+ threequarterbathnbr | non-null | float64
+ unitcnt | non-null | float64
+ yardbuildingsqft17 | non-null | float64
+ yardbuildingsqft26 | non-null | float64
+ yearbuilt | non-null | float64
+ numberofstories | non-null | float64
+ fireplaceflag | non-null | float64
+ structuretaxvaluedollarcnt | non-null | float64
+ taxvaluedollarcnt | non-null | float64
+ assessmentyear | non-null | float64
+ landtaxvaluedollarcnt | non-null | float64
+ taxamount | non-null | float64
+ taxdelinquencyflag | non-null | object 
+ taxdelinquencyyear | non-null | float64
+ censustractandblock | non-null | float64
+ airconditioningdesc | non-null | object 
+ architecturalstyledesc | non-null | object 
+ buildingclassdesc | non-null | object 
+ heatingorsystemdesc | non-null | object 
+ propertylandusedesc | non-null | object 
+ storydesc | non-null | object 
+ typeconstructiondesc | non-null | object
+ 
 In addition, during data processing/analysis, the following features were added:
 Name | Datatype | Definition | Possible Values 
 --- | --- | --- | --- 
@@ -50,12 +142,12 @@ The overall process followed in this project, is as follows:
 Plan
 Acquire
 Prepare
-Explore
+Explore 
 Model
 Deliver
 
 ### 1. Plan
-* Use the Trello board to compile and track the tasks involved in this project
+* Use the <a href="https://trello.com/b/eKZcBkR5/clustering-project">Trello board</a> to compile and track the tasks involved in this project
 * Collect required data-source information (namely the database connection details/credentials)
 * Perform surface-level examination of the 2017 data
 
@@ -63,22 +155,57 @@ Deliver
 * Acquires the dataset under analysis, using python code within the "acquire.py" script. Uses stored credentials (via env.py) to collect data from the codeup database
 * Data is collected from the following tables using a SQL query:
   1. properties_2017
-  2. predictions_2017
-  3. propertylandusetype
+  2. airconditioningtype 
+  3. architecturalstyletype 
+  4. buildingclasstype 
+  5. heatingorsystemtype 
+  6. propertylandusetype 
+  7. storytype 
+  8. typeconstructiontype
   * as was the case in the previous Zillow project, we are focusing on single-unit properties. By definition, this includes any property that matches the following description: "a housing unit within a larger structure that can be used by an individual or household to eat, sleep, and live. The unit can be in any type of residence, such as a house, apartment, or mobile home, and may also be a single unit in a group of rooms"
   * to improve performance, caching was used - the data collected by the aforementioned query was stored in a CSV file on my machine. This allows us to avoid repeated calls to the database by instead using the local copy on subsequent data acquisition calls
+  * Finally, this file contains functions to perform summarization and data regarding the number of nulls by column and row 
 
 ### 3. Prepare
 * This step involves the cleaning and preparation of the data. To increase modularity, this functionality is a part of the "prepare.py" python script.
+* The script performs a number of functions, such as:
+  * removing duplicate ParcelIds - these represent duplicate records
+  * dropping duplucate columns
+  * checking for other duplicate records, wherein the entire data record is duplicated (and removing them if found)
+  * dropping columns and rows where more than half of the values are null - these are considered unhelpful
+  * drop 5 additional columns which clearly contain a large number of nulls:
+    * heatingorsystemtypeid
+    * buildingqualitytypeid
+    * propertyzoningdesc
+    * unitcnt
+    * heatingorsystemdesc
+  * encode the age of home as currentYear - age_of_home, to give it a relative value
+  * encode the fips column to produce three regions: LA_county, orange_county and ventura_county
 
 ### 4. Explore
-
+ * Perform bivariate analysis, by generating bar plots for categorical variables, as well as scatter plots for quantitative variables
+ * Performs multivariate analysis by generating scatter plots of each continuous variable against the target variable, by each categorical variable
+ * Use tools such as a heatmap to discover correlation between variables and the target variable
+ * Use pairplots to analyze interactions between variables; these will help find distinct clusters where relationships are not driven solely by linear correlation
+ * Use the above information to generate three different clusters:
+   1. Cluster1: bathroomcnt, bedroomcnt, calculatedfinishedsquarefeet, age_of_home, buildingqualitytypeid
+   2. Cluster2: structuretaxvaluedollarcnt, taxvaluedollarcnt, landtaxvaluedollarcnt, taxamount 
+   3. Cluster3: latitude, longitude 
+ * split the data into train/test/validate splits 
 
 ### 5. Model
-
+ * Use a scalar to ensure that the data is scaled 
+ * Use KMeans to predict log error values in conjunction with the clusters mentioned above
+ * Plot the data and validate using statistical analysis: levenes tests, T-Tests and RMSE/R-squared calculations
+   * make use of the following regression algorithms to generate models:
+    1. OLS Regression
+    2. Lasso + Lars
+    3. Tweedie Regressor GLM
+    4. Polynomial Regression
+ * evaluate the results and compare the output of each model to test for accuracy against the different data splits
 
 ### 6. Deliver
-
+Present findings via Jupyte Nrotebook
 
 ## Reproducing the Project
 Simply clone the project locally and create an env.py file in the same folder as the cloned code. The format should be as follows:
@@ -97,6 +224,10 @@ In the above code, replace the `host`, `user` and `password` values with the cor
 Next, open the Jupyter notebook titled “<<FINAL REPORT NAME>>” and execute the code within. 
 
 ## Takeaways
+During the analysis process, I made use of the following regression models:
 
+Additionally, I made use of clustering and Unsupervised Machine Learning to generate a number of new features.
 
+ The square footage, tax values, county and some of our clusters were found to be the best drivers of log error. 'calculatedfinishedsquarefeet', 'structuretaxvaluedollarcnt', 'taxvaluedollarcnt', 'LA_county', 'is_cluster4_3' 'cluster4_1', 'cluster4_2'
+ 
 ## Next Steps
