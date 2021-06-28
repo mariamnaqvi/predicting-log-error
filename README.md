@@ -4,7 +4,7 @@
 The goal of this analysis is to acquire Zillow data regarding single unit properties from 2017, cleaning and analyzing it to create supervised Machine Learning models. These models were used to find drivers of errors in the Zestimate and the sales price of those properties. Unsupervised Machine Learning Techniques like Clustering were then utilized to boost model performance in predicting log errors.
 
 ## Key Takeaways
-- The square footage, tax values, county and types 1 and 2 of cluster 3 were found to be the best drivers of log error.
+- The square footage, tax values, county and types 1, 2 and 3 of cluster 3 were found to be the best drivers of log error.
 - Most variables like number of bedrooms and bathrooms were highly correlated with each other and had low correlation with that target.
 - There were many outliers especially in the tax variables indicating some premium properties were part of the dataset.
   - These outliers were removed from the dataset to achieve more normal distributions for our analysis and help train the models better.
@@ -14,8 +14,8 @@ The goal of this analysis is to acquire Zillow data regarding single unit proper
 - The Root Mean Squared Error (RMSE) and R squared were utilized as metrics to evaluate each model's performance
   - RMSE was utilized since we are comparing different size datasets
   - R squared was utilized to evaluate the variance in the model explained by our models
-- My best model used OLS Linear Regression and had RMSE of 0.157616 and R squared of 0.003644 on the validate splits. While this beat the median baseline, the R-squared value is very low.
-- The model's performance decreased slightly on out of sample data to an RMSE of 0.162519 and R squared of 0.000142 on the test split
+- My best model used OLS Linear Regression and had RMSE of 0.157648 and R squared of 0.003244 on the validate splits. While this beat the median baseline, the R-squared value is very low.
+- The model's performance decreased slightly on out of sample data to an RMSE of 0.162465 and R squared of 0.000811 on the test split
 
 ## Project Goals
 Create scripts to perform the following:
@@ -238,7 +238,7 @@ The overall process followed in this project, is as follows:
 ### 5. Model
  * Use the median log error to establish a baseline
  * make use of the following regression algorithms to generate models:
-    1. OLS Regression
+    1. OLS Linear Regression
     2. Lasso + Lars
     3. Tweedie Regressor GLM
     4. Polynomial Regression
