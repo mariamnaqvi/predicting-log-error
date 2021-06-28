@@ -1,7 +1,7 @@
-# Clustering Project - Identifying Drivers for Errors in Zillow's Zestimates
+# Identifying Drivers for Errors in Zillow's Zestimates
 
 ## Project Description
-Perform further analysis on the Zillow 2017 dataset, performing data cleaning, processing and exploration before using statistical analysis to derive valuable conclusions. Furthermore, create a model which will accurately predict the logerror present in Zillow's Zestimate system, isolating the features ("drivers") used to calculate Zestimate values.
+Perform further analysis on the Zillow 2017 dataset, performing data cleaning, processing and exploration before using statistical analysis to derive valuable conclusions. This project also utilized clustering to help boost model performance. Furthermore, create a model which will accurately predict the logerror present in Zillow's Zestimate system, isolating the features ("drivers") used to calculate Zestimate values.
 
 ## Project Goals
 Create scripts to perform the following:
@@ -13,14 +13,14 @@ Create scripts to perform the following:
     - Consider outliers and other data points of interest
  - exploration of the dataset
     - Examine interactions between independent variables and the target variable using various visualization techniques and analysis
-   - Perform clustering to further explore the data. Use at 3 combinations of features
+   - Perform clustering to further explore the data. 
  - modeling of the dataset
    - generate at least 4 different models and analyse their performance
 
 ## Business Goals
-* Find drivers of errors in Zillow's Zestimate system
+* Find drivers of errors in Zillow's Zestimates
 * Attempt to produce a model which will closely replicate (or improve upon) the accuracy of the Zestimate system
-   * Note that we are examining the log error present in the Zestimate system; logerror will be calculated as follows:
+   * Note that we are examining the log error present in the Zestimates; logerror is calculated as follows according to Zillow:
    
                                 *logerror = log(Zestimate) - log(SalePrice)*
 
@@ -28,8 +28,8 @@ Create scripts to perform the following:
 *Hypotheses 1:* 
 * Confidence level = 0.95
 * Alpha = 1 - Confidence level = 0.05
-* H<sub>0</sub>: Mean logerror for homes with 2294 sqft or less is equivalent to those with more than 2294 sq ft
-* H<sub>1</sub>: Mean logerror for homes with 2294 sqft or less is greater than those with more than 2294 sq ft
+* H<sub>0</sub>: Mean logerror for homes with 2064 sqft or less is equivalent to those with more than 2064 sq ft
+* H<sub>1</sub>: Mean logerror for homes with 2064 sqft or less is greater than those with more than 2064 sq ft
 
 *Hypotheses 2:* 
 * Confidence level = 0.95
