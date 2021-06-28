@@ -101,91 +101,91 @@ Data Dictionary
 The data was initially comprised of the following columns:
 Name | Datatype | Definition | Possible Values
 --- | --- | --- | ---
- typeconstructiontypeid | float64 | Numeric Value
- storytypeid | float64 | Numeric Value
- propertylandusetypeid float64 | Numeric Value
- heatingorsystemtypeid | float64 | Numeric Value
- buildingclasstypeid | object 
- architecturalstyletypeid| float64
- airconditioningtypeid | float64
- parcelid | int64  
- id | int64  
- logerror | float64
- transactiondate | object 
- id | int64  
- basementsqft | float64
- bathroomcnt | float64
- bedroomcnt | float64
- buildingqualitytypeid | float64
- calculatedbathnbr | float64
- decktypeid | float64
- finishedfloor1squarefeet | float64
- calculatedfinishedsquarefeet | float64
- finishedsquarefeet12 | float64
- finishedsquarefeet13 | float64
- finishedsquarefeet15 | float64
- finishedsquarefeet50 | float64
- finishedsquarefeet6 | float64
- fips | float64
- fireplacecnt | float64
- fullbathcnt | float64
- garagecarcnt | float64
- garagetotalsqft | float64
- hashottuborspa | float64
- latitude | float64
- longitude | float64
- lotsizesquarefeet | | float64
- poolcnt | float64
- poolsizesum |  float64
- pooltypeid10 |  float64
- pooltypeid2 | float64
- pooltypeid7 | float64
- propertycountylandusecode | object 
- propertyzoningdesc | object 
- rawcensustractandblock | float64
- regionidcity | non-null | float64
- regionidcounty | non-null | float64
- regionidneighborhood | non-null | float64
- regionidzip | non-null | float64
- roomcnt | non-null | float64
- threequarterbathnbr | non-null | float64
- unitcnt | non-null | float64
- yardbuildingsqft17 | non-null | float64
- yardbuildingsqft26 | non-null | float64
- yearbuilt | non-null | float64
- numberofstories | non-null | float64
- fireplaceflag | non-null | float64
- structuretaxvaluedollarcnt | non-null | float64
- taxvaluedollarcnt | non-null | float64
- assessmentyear | float64
- landtaxvaluedollarcnt | float64
- taxamount | float64
- taxdelinquencyflag | object 
- taxdelinquencyyear | float64
- censustractandblock | float64
- airconditioningdesc | object 
- architecturalstyledesc |  object 
- buildingclassdesc |  object 
- heatingorsystemdesc |  object 
- propertylandusedesc |  object 
- storydesc |  object 
- typeconstructiondesc | object
+ typeconstructiontypeid | float64 | contruction type| Numeric Value
+ storytypeid | float64 | type of story | Numeric Value
+ propertylandusetypeid | float64 | property land use type | Numeric Value
+ heatingorsystemtypeid | float64 | heating system type | Numeric Value
+ buildingclasstypeid | object | building class type | String value
+ architecturalstyletypeid| float64 | architectural style | Numeric value
+ airconditioningtypeid | float64 | air conditioning type | Numeric value
+ parcelid | int64 | unique identifier for each property | Numeric value
+ id | int64 | id for each property | Numeric value
+ logerror | float64 | log error | Numeric value
+ transactiondate | object | transaction date | Date value
+ id | int64  | id for this property | Numeric value
+ basementsqft | float64 | square foot of basement | Numeric value
+ bathroomcnt | float64 | number of bathrooms | Numeric value
+ bedroomcnt | float64 | number of bedrooms | Numeric value
+ buildingqualitytypeid | float64 | building quality type | Numeric value
+ calculatedbathnbr | float64 | calculated number of bathrooms | Numeric value
+ decktypeid | float64 | type of deck | Numeric value
+ finishedfloor1squarefeet | float64 | square feet of the finished level| Numeric value
+ calculatedfinishedsquarefeet | float64 | calculated finished square foot value | Numeric value
+ finishedsquarefeet12 | float64 | Square footage | Numeric value
+ finishedsquarefeet13 | float64 | Square footage | Numeric value
+ finishedsquarefeet15 | float64 | Square footage | Numeric value
+ finishedsquarefeet50 | float64 | Square footage | Numeric value
+ finishedsquarefeet6 | float64 | Square footage | Numeric value
+ fips | float64 | County | 	6037, 6059 or 6111
+ fireplacecnt | float64 | Number of fireplaces | Numeric value
+ fullbathcnt | float64 | Number of full bathrooms | Numeric value
+ garagecarcnt | float64 | Number of cars which fit in the garage | Numeric value
+ garagetotalsqft | float64 | Square footage of garage | Numeric value
+ hashottuborspa | float64 | Whether the home has a hot tub or spa | Numeric value
+ latitude | float64 | Angular distance north/south of the equator, for locating a property | Numeric value
+ longitude | float64| Angular distance east/west of the meridian, for locating a property | Numeric value
+ lotsizesquarefeet | float64 | Square footage | Numeric value
+ poolcnt | float64 | Number of pools | Numeric value
+ poolsizesum |  float64 | Size of the pool | Numeric value
+ pooltypeid10 |  float64 | Type of Pool | Numeric value
+ pooltypeid2 | float64 | Type of Pool | Numeric value
+ pooltypeid7 | float64 | Type of Pool | Numeric value
+ propertycountylandusecode | object | Property County Land Use | Numeric value
+ propertyzoningdesc | object | Property Zone | Numeric value
+ rawcensustractandblock | float64 | Census data | Numeric value
+ regionidcity | float64 | City | Numeric value
+ regionidcounty | float64 | County | Numeric value
+ regionidneighborhood | float64 | Neighborhood | Numeric value
+ regionidzip | float64 | Zip Code| Numeric value
+ roomcnt | float64 | Number of Rooms | Numeric value
+ threequarterbathnbr | float64 |  Number of 3/4 Baths| Numeric value
+ unitcnt | float64 | Number of Units | Numeric value
+ yardbuildingsqft17 | float64 | Square Footage of Yard | Numeric value
+ yardbuildingsqft26 | float64 | Square Footage of Yard | Numeric value
+ yearbuilt | float64 | Year Built | 4-digit Numeric value
+ numberofstories | float64 | Number of Stories | Numeric value
+ fireplaceflag | float64 | Fire place configuration | Numeric value
+ structuretaxvaluedollarcnt| float64 | Tax Value in Dollars of the structure | Numeric value
+ taxvaluedollarcnt | float64 | Tax Value in Dollars | Numeric value
+ assessmentyear | float64 | Year of Tax Assessment | Numeric value
+ landtaxvaluedollarcnt | float64 | Land Tax Value in Dollars| Numeric value
+ taxamount | float64 | Tax Amount | Numeric value
+ taxdelinquencyflag | object | Whether or not the Tax is delinquent | String value
+ taxdelinquencyyear | float64 | Year the taxes were deemed delinquent | 4-digit Numeric value; NaN if not specified
+ censustractandblock | float64 | Census information | Numeric value
+ airconditioningdesc | object | Air Conditioning type | String value
+ architecturalstyledesc |  object | Architectural Style | String value
+ buildingclassdesc |  object | Building Class | String value
+ heatingorsystemdesc | object | Heating system type | String value
+ propertylandusedesc | object | Property Land Use type| Single Family Residential, Condominium, Cluster Home, Manufactured, Modular, Prefabricated Homes, Mobile Home, Townhouse
+ storydesc |  object | Story description type | String value
+ typeconstructiondesc | object | Contruction type | String value
  
 In addition, during data processing/analysis, the following features were added:
 Name | Datatype | Definition | Possible Values 
 --- | --- | --- | --- 
-age_of_home | integer | currentYear - yearbuilt | Numeric Value
+age_of_home | integer | currentYear - yearbuilt | Numeric value, basically 2021 - year built
 
 ## Project Planning
 
 The overall process followed in this project, is as follows:
 
-Plan
-Acquire
-Prepare
-Explore 
-Model
-Deliver
+- Plan
+- Acquire
+- Prepare
+- Explore 
+- Model
+- Deliver
 
 ### 1. Plan
 * Use the <a href="https://trello.com/b/eKZcBkR5/clustering-project">Trello board</a> to compile and track the tasks involved in this project
@@ -266,6 +266,6 @@ Next, open the [Jupyter notebook](https://github.com/mariamnaqvi/predicting-log-
 
 ## Conclusion & Next Steps
 - The best drivers of log error were found to be the tax variables, location in LA county and sets of cluster 3 which contains bathroomcnt, taxvaluedollarcnt and calculatedfinishedsquarefeet
-- The best performing model is the 2nd Degree Polynomial Regression Model.
+- The best performing model is the OLS Linear Regression Model.
 - If I had more time, I would explore the creation of more clusters and possibly collect more data especially on premium propeties so as much information is not lost to outliers.
 
